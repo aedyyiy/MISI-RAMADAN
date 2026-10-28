@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misi Ramadan RPG: Legenda Penjaga Jiwa</title>
+<style>
+:root{--bg:#071522;--panel:#10283a;--panel2:#16384c;--gold:#ffd166;--mint:#5de0b2;--red:#ff667a;--text:#f3f7fa;--muted:#b6c8d4;--line:#315469}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#1b4057 0,#081522 45%,#050c14 100%);font-family:system-ui,Arial,sans-serif;color:var(--text)}button,input,select{font:inherit}button{cursor:pointer;color:var(--text);background:#1a3c50;border:1px solid #416477;border-radius:10px;padding:10px 12px}button:hover{filter:brightness(1.13)}button:disabled{opacity:.5;cursor:not-allowed}.primary{background:var(--gold);color:#172431;border-color:var(--gold);font-weight:800}.danger{background:#6d2838;border-color:#a64b60}.wrap{max-width:1240px;margin:auto;padding:15px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 2px 16px}.logo{font-weight:950;letter-spacing:.06em;color:var(--gold);font-size:clamp(18px,3vw,29px)}.sub,.muted,.tip{color:var(--muted)}.sub{font-size:13px}.badge{display:inline-block;padding:5px 10px;border-radius:20px;background:#294354;color:var(--gold);font-size:12px;font-weight:800}.hud{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}.stat{background:#0b1d2b;border:1px solid #28495d;border-radius:12px;padding:9px}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{display:block;margin-top:3px;font-size:16px}.bar{height:8px;background:#273b49;border-radius:20px;overflow:hidden;margin-top:6px}.bar span{display:block;height:100%;width:100%;background:var(--mint);transition:width .2s}.mainlayout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:13px}.panel{background:linear-gradient(160deg,#123147,#0c2030);border:1px solid #2c5064;border-radius:17px;padding:15px;box-shadow:0 12px 32px #0003}.nav{display:flex;flex-direction:column;gap:7px;align-self:start;position:sticky;top:10px}.nav button{text-align:left}.nav button.active{background:#365365;border-color:var(--gold);color:var(--gold)}.hero{background:linear-gradient(115deg,#183c53,#272d50);border:1px solid #4c5871;border-radius:18px;padding:22px;display:grid;grid-template-columns:1.5fr .7fr;gap:10px;align-items:center;overflow:hidden}.hero h1{font-size:clamp(25px,4vw,42px);line-height:1.05;margin:10px 0}.hero p{line-height:1.55;color:#d5e2e9}.heroAvatar{font-size:clamp(60px,9vw,100px);text-align:center;filter:drop-shadow(0 10px 15px #0006);animation:bob 2s ease-in-out infinite}.section{display:none}.section.active{display:block}.section h2{margin:3px 0 12px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:11px}.card{background:#102b3d;border:1px solid #315369;border-radius:14px;padding:14px}.card .big{font-size:34px}.card h3{margin:7px 0}.card p{font-size:13px;line-height:1.5;color:var(--muted)}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.field{display:flex;flex-direction:column;gap:6px;margin:10px 0}.field input,.field select{background:#091c2a;color:var(--text);border:1px solid #3b5a6d;border-radius:10px;padding:10px;width:100%}.classes{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.classbtn{text-align:center;padding:9px 5px}.classbtn span{display:block;font-size:26px}.classbtn small{display:block;color:var(--muted);font-size:11px}.classbtn.active{outline:2px solid var(--gold);background:#29495a}.gameLayout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:12px}.gamebox{padding:10px}.arena{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;background:#091625;border:1px solid #315166;touch-action:none}.status{min-height:42px;color:#d9e7ee;font-size:13px;padding:9px 10px;background:#091c2a;border-radius:10px;margin-top:9px;line-height:1.45}.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:225px;margin:10px auto}.controls button{font-size:18px;padding:10px 5px;touch-action:manipulation}.empty{visibility:hidden}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.actions button{flex:1;min-width:100px}.tip{font-size:12px;line-height:1.5}.quest{display:flex;align-items:center;gap:10px}.quest span{font-size:28px}.note{background:#f0f6e9;color:#163147;border-left:5px solid #27966e;padding:13px;border-radius:9px;line-height:1.6}.q{background:#0a1d2b;border:1px solid #2c4a5d;border-radius:13px;padding:13px;margin:10px 0}.q button{display:block;width:100%;text-align:left;margin:7px 0}.q button.good{background:#165b43;border-color:#5de0b2}.q button.bad{background:#642b39;border-color:#ff667a}.shopitem{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#0b2030;padding:10px;border-radius:10px;margin:8px 0}.quizveil{position:fixed;inset:0;background:#02070bdc;display:none;align-items:center;justify-content:center;padding:16px;z-index:9}.quizveil.show{display:flex}.quiz{width:min(560px,100%);background:#10283a;border:2px solid var(--gold);border-radius:20px;padding:22px;box-shadow:0 20px 70px #0009}.qoptions{display:grid;gap:8px;margin-top:14px}.qoptions button{text-align:left}.qoptions button:disabled{opacity:.7}.footer{text-align:center;color:var(--muted);font-size:12px;margin:18px 0}.hidden{display:none!important}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}@keyframes bossLunge{0%{transform:translateX(0) scale(1)}35%{transform:translateX(-35px) scale(1.1)}70%{transform:translateX(18px) scale(.96)}100%{transform:translateX(0) scale(1)}}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}@media(max-width:850px){.mainlayout{grid-template-columns:1fr}.nav{position:static;display:grid;grid-template-columns:repeat(3,1fr)}.nav button{text-align:center;font-size:12px;padding:9px 5px}.gameLayout{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.heroAvatar{display:none}}@media(max-width:520px){.wrap{padding:8px}.panel{padding:11px}.hud{grid-template-columns:repeat(2,1fr)}.nav{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div><div class="logo">☾ MISI RAMADAN RPG</div><div class="sub">Legenda Penjaga Jiwa · Dunia pembelajaran Pendidikan Islam</div></div><span class="badge">TAHUN 4 · RPG EDUKASI</span></header>
+<div class="hud">
+ <div class="stat"><small>❤️ NYAWA</small><strong id="hpText">100 / 100</strong><div class="bar"><span id="hpBar"></span></div></div>
+ <div class="stat"><small>⭐ PENGALAMAN</small><strong id="xpText">0 XP</strong><div class="bar"><span id="xpBar"></span></div></div>
+ <div class="stat"><small>🪙 SYILING</small><strong id="coinText">0</strong></div>
+ <div class="stat"><small>🏅 LEVEL</small><strong id="levelText">Level 1</strong></div>
+</div>
+<div class="mainlayout">
+<nav class="panel nav">
+ <button class="active" data-page="home">🏕️ Pangkalan</button>
+ <button data-page="character">🧙 Watak</button>
+ <button data-page="map">🗺️ Peta Misi</button>
+ <button data-page="learn">📖 Kit Ilmu</button>
+ <button data-page="shop">🛍️ Kedai</button>
+ <button data-page="boss">⚔️ Bos Akhir</button>
+</nav>
+<main>
+<section id="home" class="section active">
+ <div class="hero"><div><span class="badge">KEMPEN UTAMA · MUSIM RAMADAN</span><h1>MISI RAMADAN:<br>LEGENDA PENJAGA JIWA</h1><p>Alam Ramadan kehilangan cahaya ilmu. Teroka kawasan, bina watak, jawab soalan dan gunakan kebijaksanaan untuk menewaskan Bos Akhir!</p><div class="row"><button class="primary" data-goto="character">✦ Cipta / Ubah Watak</button><button data-goto="map">Teruskan Misi →</button></div></div><div class="heroAvatar" id="homeAvatar">🗡️</div></div>
+ <h2>📜 Jurnal Pengembaraan</h2><div class="cards"><div class="card"><h3>🎯 Objektif semasa</h3><p>Kuasai asas puasa, amalkan akhlak mulia dan selesaikan cabaran sebelum bertemu bos.</p><div class="bar"><span id="questBar"></span></div><small id="questText" class="tip">0 daripada 3 misi diterokai</small></div><div class="card"><h3>💾 Simpanan sesi</h3><p>Kemajuan permainan disimpan secara setempat pada pelayar ini jika storan dibenarkan.</p><button id="resetAll">Mula Semula Permainan</button></div></div>
+ <h2 style="margin-top:20px">⚡ Misi Pilihan</h2><div class="cards">
+ <div class="card"><div class="big">📚</div><h3>Hutan Ilmu</h3><p>Kenali maksud dan hukum puasa.</p><button data-goto="learn">Teroka</button></div>
+ <div class="card"><div class="big">🏮</div><h3>Kampung Akhlak</h3><p>Buat pilihan bijak dalam situasi Ramadan.</p><button data-goto="map">Lihat misi</button></div>
+ <div class="card"><div class="big">🔮</div><h3>Gua Hikmah</h3><p>Uji kefahaman sebelum membuka pintu bos.</p><button data-goto="map">Lihat peta</button></div></div>
+</section>
+<section id="character" class="section panel">
+ <h2>🧙 Cipta Pengembara</h2><p class="muted">Pilih nama, kelas dan aura. Kelas menentukan gaya serangan semasa Bos Akhir.</p>
+ <label class="field">Nama pengembara<input id="heroName" maxlength="18" value="Pengembara"></label>
+ <div class="field"><label>Pilih kelas watak</label><div class="classes">
+ <button class="classbtn active" data-class="dagger"><span>🗡️</span><b>Bayang</b><small>Pantas · jarak dekat</small></button>
+ <button class="classbtn" data-class="archer"><span>🏹</span><b>Pemanah</b><small>Jarak jauh</small></button>
+ <button class="classbtn" data-class="mage"><span>🔮</span><b>Ahli Sihir</b><small>Kuasa tinggi</small></button>
+ </div></div>
+ <label class="field">Warna aura<input type="color" id="heroColor" value="#57d6bc"></label>
+ <div class="note"><strong>Kuasa kelas</strong><br>🗡️ Bayang: pantas dan sesuai bertarung dekat.<br>🏹 Pemanah: menyerang dari jarak jauh.<br>🔮 Ahli Sihir: serangan kuat dan kuasa khas.</div>
+ <div style="font-size:76px;text-align:center;margin:15px" id="characterPreview">🗡️</div><button class="primary" id="saveCharacter">Sahkan Watak</button><p id="characterMessage" class="tip"></p>
+</section>
+<section id="map" class="section panel">
+ <h2>🗺️ Peta Dunia Ramadan</h2><p class="muted">Selesaikan dua misi ilmu untuk membuka pertarungan Bos Akhir.</p>
+ <div class="cards">
+ <div class="card"><div class="big">🌲</div><span class="badge">MISI 01</span><h3>Hutan Ilmu</h3><p>Kenali pengertian dan hukum puasa.</p><button data-goto="learn">Masuk kawasan</button></div>
+ <div class="card"><div class="big">🏮</div><span class="badge">MISI 02</span><h3>Kampung Akhlak</h3><p>Pilih tindakan yang mencerminkan akhlak mulia.</p><button id="startMoral">Mulakan cabaran</button></div>
+ <div class="card"><div class="big">🌌</div><span class="badge">MISI 03</span><h3>Gerbang Bos</h3><p id="gateText">Selesaikan dua misi untuk membuka gerbang.</p><button id="goBoss" class="primary">Pergi ke Bos Akhir</button></div>
+ </div><div id="moralQuiz" class="hidden"><h3>🏮 Cabaran Kampung Akhlak</h3><div id="moralQuestions"></div></div>
+</section>
+<section id="learn" class="section panel">
+ <h2>📖 Kit Ilmu Ramadan</h2><p class="note"><strong>Pengertian puasa:</strong> menahan diri daripada perkara yang membatalkan puasa bermula dari terbit fajar hingga terbenam matahari, disertai niat mengikut syaratnya.</p>
+ <div class="cards" style="margin-top:12px">
+ <div class="card"><div class="big">🌙</div><h3>Hukum puasa</h3><p>Puasa Ramadan wajib bagi Muslim yang memenuhi syarat wajib puasa.</p></div>
+ <div class="card"><div class="big">💚</div><h3>Hikmah puasa</h3><p>Melatih kesabaran, disiplin, ketakwaan dan empati terhadap orang yang memerlukan.</p></div>
+ <div class="card"><div class="big">🤲</div><h3>Akhlak Ramadan</h3><p>Menjaga tutur kata, membantu keluarga, bersedekah dan menghormati orang lain.</p></div>
+ </div>
+ <h3 style="margin-top:20px">🎬 Video Pembelajaran</h3><p class="tip">Gantikan VIDEO_ID dengan ID video YouTube pilihan yang sesuai dengan pembelajaran.</p>
+ <iframe title="Video pembelajaran Ramadan" style="width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#071522" src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+ <h3>🧠 Semak kefahaman</h3><div id="learnQuestions"></div><button class="primary" id="finishLearn">Selesaikan Hutan Ilmu (+20 XP)</button><p id="learnResult" class="tip"></p>
+</section>
+<section id="shop" class="section panel">
+ <h2>🛍️ Kedai Pengembara</h2><p class="muted">Gunakan syiling yang diperoleh untuk membeli aura kosmetik. Pembelian tidak memberi kelebihan tidak adil dalam kuiz.</p>
+ <div id="shopItems"></div><p class="tip">Syiling diperoleh daripada menjawab soalan dengan betul dan menyelesaikan misi.</p>
+</section>
+<section id="boss" class="section panel">
+ <h2>⚔️ Bos Akhir: Penjaga Bayang</h2><p class="muted">Gerakkan watak, elak serangan bos dan jawab soalan untuk menghentikan serangan khas atau pemulihan bos.</p>
+ <div class="gameLayout">
+  <div class="panel gamebox">
+   <div class="hud">
+    <div class="stat"><small>❤️ NYAWA</small><strong id="fightHpText">100 / 100</strong><div class="bar"><span id="fightHpBar"></span></div></div>
+    <div class="stat"><small>👹 HP BOS</small><strong id="bossHpText">150 / 150</strong><div class="bar"><span id="bossHpBar" style="background:var(--red)"></span></div></div>
+    <div class="stat"><small>⏱️ MASA</small><strong id="timeText">01:30</strong></div>
+    <div class="stat"><small>✨ TENAGA</small><strong id="energyText">0%</strong><div class="bar"><span id="energyBar" style="background:var(--gold)"></span></div></div>
+   </div>
+   <canvas id="arena" class="arena" width="960" height="540" aria-label="Arena pertarungan. Gunakan WASD atau anak panah untuk bergerak."></canvas>
+   <div class="status" id="status" aria-live="polite">Pilih tahap kesukaran dan tekan Mula Pertarungan.</div>
+   <div class="controls"><span class="empty"> </span><button data-move="up">▲</button><span class="empty"> </span><button data-move="left">◀</button><button data-move="down">▼</button><button data-move="right">▶</button></div>
+   <div class="actions"><button id="attackBtn">⚔️ Serang</button><button id="specialBtn">✨ Kuasa Khas</button><button id="startFight" class="primary">▶ Mula Pertarungan</button></div>
+   <p class="tip">Komputer: WASD/anak panah untuk bergerak, Space untuk menyerang, E untuk kuasa khas. Telefon: gunakan butang arah.</p>
+  </div>
+  <div>
+   <div class="panel"><h3>🎚️ Tahap</h3><label class="field">Kesukaran<select id="difficulty"><option value="easy">Easy — 120 saat</option><option value="intermediate" selected>Intermediate — 90 saat</option><option value="hard">Hard — 60 saat</option><option value="impossible">Impossible — 45 saat</option></select></label><p class="tip">Tahap tinggi menjadikan bos lebih kuat dan lebih kerap menyerang.</p><button id="resetFight" style="width:100%">↻ Tetapkan Semula Pertarungan</button></div>
+   <div class="panel" style="margin-top:10px"><h3>📜 Strategi</h3><p class="tip">• Bergerak untuk mengelak gelombang serangan merah.</p><p class="tip">• Bos bergerak mengejar pemain dan melompat ke arah pemain.</p><p class="tip">• Jawab soalan pantas untuk membatalkan special attack atau healing.</p><p class="tip">• Serangan biasa mengisi tenaga kuasa khas.</p></div>
+  </div>
+ </div>
+ <div class="panel" style="margin-top:12px"><h3>🎮 Bonus: Wordwall</h3><p class="tip">Letakkan URL embed Wordwall di sini. Gantikan WORDWALL_EMBED_URL dengan URL benam sebenar.</p><iframe title="Permainan Wordwall" style="width:100%;height:420px;border:0;border-radius:12px" src="WORDWALL_EMBED_URL"></iframe></div>
+</section>
+</main></div>
+<div class="footer">Misi Ramadan RPG · Permainan pendidikan fiksyen, animasi kartun tanpa unsur grafik. Kemajuan disimpan setempat dalam sesi pelayar.</div>
+</div>
+<div class="quizveil" id="quizVeil" role="dialog" aria-modal="true" aria-labelledby="quizTitle"><div class="quiz"><span class="badge" id="quizType">AMARAN BOS</span><h2 id="quizTitle">Hentikan kuasa bos!</h2><p id="quizPrompt"></p><div class="qoptions" id="quizOptions"></div><div id="quizFeedback" aria-live="polite" style="margin-top:12px;min-height:24px;font-weight:800"></div><p class="tip">Jawab dalam 10 saat untuk membatalkan tindakan bos.</p></div></div>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+let heroClass='dagger',heroColor='#57d6bc',xp=0,coins=0,level=1,missions=new Set(),answeredLearn=false,moralDone=false;
+const classes={dagger:{icon:'🗡️',name:'Bayang',damage:17,range:100,energy:22,special:'Serangan Pantas',speed:4},archer:{icon:'🏹',name:'Pemanah',damage:13,range:300,energy:25,special:'Anak Panah Cahaya',speed:3.5},mage:{icon:'🔮',name:'Ahli Sihir',damage:22,range:260,energy:32,special:'Bintang Cahaya',speed:3.2}};
+const questions=[
+{q:'Apakah hukum puasa Ramadan bagi Muslim yang memenuhi syarat?',a:['Sunat','Wajib','Harus'],c:1,why:'Puasa Ramadan ialah ibadah wajib bagi Muslim yang memenuhi syarat.'},
+{q:'Bilakah waktu berpuasa?',a:['Dari terbit fajar hingga terbenam matahari','Dari tengah malam hingga tengah hari','Hanya pada waktu pagi'],c:0,why:'Waktu puasa bermula dari terbit fajar hingga terbenam matahari.'},
+{q:'Yang manakah contoh akhlak mulia ketika berpuasa?',a:['Mengejek rakan','Bercakap kasar','Bercakap dengan sopan'],c:2,why:'Menjaga tutur kata ialah akhlak yang baik.'},
+{q:'Mengapakah kita digalakkan bersedekah?',a:['Untuk membantu orang yang memerlukan','Supaya dipuji sahaja','Untuk bersaing'],c:0,why:'Sedekah membantu orang yang memerlukan.'},
+{q:'Apakah antara hikmah berpuasa?',a:['Melatih kesabaran dan ketakwaan','Menggalakkan sikap sombong','Mengabaikan tanggungjawab'],c:0,why:'Puasa mendidik kesabaran dan ketakwaan.'},
+{q:'Apakah tindakan baik apabila rakan terlupa membawa makanan berbuka?',a:['Mengejeknya','Berkongsi jika mampu','Membiarkannya untuk dihina'],c:1,why:'Berkongsi makanan menunjukkan keprihatinan.'},
+{q:'Apakah yang patut dilakukan apabila berlaku perselisihan?',a:['Membalas dengan kasar','Mengajak orang bergaduh','Bertenang dan mencari jalan baik'],c:2,why:'Bertenang membantu mengelakkan pergaduhan.'},
+{q:'Apakah amalan yang baik sepanjang Ramadan?',a:['Membaca al-Quran','Menyakiti rakan','Mengabaikan keluarga'],c:0,why:'Membaca al-Quran ialah amalan baik sepanjang Ramadan.'}
+];
+function addReward(n,c=0){xp+=n;coins+=c;level=Math.floor(xp/100)+1;updateProfile()}
+function updateProfile(){
+ $('hpText').textContent=player.hp+' / '+player.maxHp;$('hpBar').style.width=player.hp+'%';
+ $('xpText').textContent=xp+' XP';$('xpBar').style.width=(xp%100)+'%';$('coinText').textContent=coins;$('levelText').textContent='Level '+level;
+ $('questBar').style.width=(missions.size/3*100)+'%';$('questText').textContent=missions.size+' daripada 3 misi diterokai';
+ $('gateText').textContent=missions.has('learn')&&missions.has('moral')?'Gerbang terbuka! Bersedia untuk bos.':'Selesaikan Hutan Ilmu dan Kampung Akhlak untuk membuka gerbang.';
+ $('goBoss').textContent=missions.has('learn')&&missions.has('moral')?'⚔️ Gerbang terbuka':'⚔️ Pergi ke Bos Akhir';
+ $('homeAvatar').textContent=classes[heroClass].icon;$('characterPreview').textContent=classes[heroClass].icon;
+ $('fightHpText').textContent=player.hp+' / '+player.maxHp;$('fightHpBar').style.width=(100*player.hp/player.maxHp)+'%';
+ $('bossHpText').textContent=Math.max(0,boss.hp)+' / '+boss.maxHp;$('bossHpBar').style.width=(100*boss.hp/boss.maxHp)+'%';
+ $('timeText').textContent=fmt(timeLeft);$('energyText').textContent=player.energy+'%';$('energyBar').style.width=player.energy+'%';
+ $('specialBtn').textContent='✨ '+classes[heroClass].special+' ('+player.energy+'%)';$('specialBtn').disabled=!running||player.energy<100||quizOpen;
+}
+function fmt(t){return String(Math.floor(Math.max(0,t)/60)).padStart(2,'0')+':'+String(Math.ceil(Math.max(0,t)%60)).padStart(2,'0')}
+function goto(page){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$(page).classList.add('active');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));if(page==='boss'){resizeCanvas();draw()}window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>goto(b.dataset.page));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>goto(b.dataset.goto));
+document.querySelectorAll('.classbtn').forEach(b=>b.onclick=()=>{if(running){setStatus('Tetapkan semula pertarungan sebelum menukar kelas.');return}document.querySelectorAll('.classbtn').forEach(x=>x.classList.remove('active'));b.classList.add('active');heroClass=b.dataset.class;updateProfile();draw()});
+$('heroName').oninput=()=>draw();$('heroColor').oninput=e=>{heroColor=e.target.value;draw()};
+$('saveCharacter').onclick=()=>{$('characterMessage').textContent='Watak '+($('heroName').value||'Pengembara')+' disahkan sebagai '+classes[heroClass].name+'.';setStatus('Watak disahkan!');updateProfile()};
+function renderQuestions(container,limit,callback){$(container).innerHTML='';questions.slice(0,limit).forEach((q,idx)=>{let box=document.createElement('div');box.className='q';let h=document.createElement('strong');h.textContent=(idx+1)+'. '+q.q;box.appendChild(h);q.a.forEach((a,i)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>{if(box.dataset.done)return;box.dataset.done='1';[...box.querySelectorAll('button')].forEach(x=>x.disabled=true);if(i===q.c){b.classList.add('good');box.insertAdjacentHTML('beforeend','<p class="tip">✅ Betul! '+q.why+'</p>');callback(true)}else{b.classList.add('bad');box.insertAdjacentHTML('beforeend','<p class="tip">💡 '+q.why+'</p>');callback(false)}};box.appendChild(b)});$(container).appendChild(box)})}
+let learnScore=0;renderQuestions('learnQuestions',2,ok=>{if(ok){learnScore++;addReward(5,2)}});
+$('finishLearn').onclick=()=>{if(answeredLearn){$('learnResult').textContent='Misi ini sudah selesai.';return}let boxes=[...$('learnQuestions').querySelectorAll('.q')];if(!boxes.every(b=>b.dataset.done)){$('learnResult').textContent='Jawab kedua-dua soalan dahulu.';return}answeredLearn=true;missions.add('learn');addReward(20,5);$('learnResult').textContent='Hutan Ilmu selesai! Ganjaran misi +20 XP dan 5 syiling.';updateProfile()};
+$('startMoral').onclick=()=>{$('moralQuiz').classList.remove('hidden');renderQuestions('moralQuestions',3,ok=>{if(ok)addReward(5,2)});$('startMoral').disabled=true;$('moralQuiz').scrollIntoView({behavior:'smooth'})};
+$('moralQuiz').addEventListener('click',()=>{let boxes=[...$('moralQuestions').querySelectorAll('.q')];if(boxes.length&&boxes.every(b=>b.dataset.done)&&!moralDone){moralDone=true;missions.add('moral');addReward(20,5);$('moralQuestions').insertAdjacentHTML('beforeend','<div class="note">🏮 Misi Kampung Akhlak selesai! Gerbang Bos kini terbuka.</div>');updateProfile()}});
+$('goBoss').onclick=()=>{goto('boss');setStatus(missions.has('learn')&&missions.has('moral')?'Gerbang terbuka. Bersedia untuk bertarung!':'Anda boleh berlatih sekarang; selesaikan dua misi untuk melengkapkan kempen.');};
+const shop=[{name:'Aura Emas',icon:'✨',price:10,color:'#ffd166'},{name:'Aura Ais',icon:'❄️',price:12,color:'#79d8ff'},{name:'Aura Zamrud',icon:'💚',price:15,color:'#5de0b2'}];let owned=new Set();
+function renderShop(){$('shopItems').innerHTML='';shop.forEach((it,i)=>{let row=document.createElement('div');row.className='shopitem';let info=document.createElement('div');info.innerHTML='<strong>'+it.icon+' '+it.name+'</strong><div class="tip">'+it.price+' syiling</div>';let b=document.createElement('button');b.textContent=owned.has(i)?'Dimiliki':('Beli');b.disabled=owned.has(i);b.onclick=()=>{if(coins<it.price){setStatus('Syiling tidak mencukupi. Selesaikan misi untuk mendapat syiling.');return}coins-=it.price;owned.add(i);heroColor=it.color;$('heroColor').value=it.color;renderShop();updateProfile();draw()};row.append(info,b);$('shopItems').appendChild(row)})}
+$('resetAll').onclick=()=>{if(confirm('Mulakan semula semua kemajuan permainan?')){xp=0;coins=0;level=1;missions.clear();answeredLearn=false;moralDone=false;learnScore=0;owned.clear();$('startMoral').disabled=false;renderQuestions('learnQuestions',2,ok=>{if(ok){learnScore++;addReward(5,2)}});$('moralQuiz').classList.add('hidden');renderShop();updateProfile();goto('home')}};
+let canvas=$('arena'),ctx=canvas.getContext('2d'),running=false,ended=false,quizOpen=false,actionDue=null,keys={},moveBtns={},lastFrame=0,lastSecond=0,lastAction=0,attackFlash=0,projectiles=[],shake=0;
+const diff={easy:{time:120,hp:110,damage:7,interval:13,heal:12,speed:1.15},intermediate:{time:90,hp:150,damage:11,interval:10,heal:18,speed:1.7},hard:{time:60,hp:190,damage:15,interval:7.5,heal:23,speed:2.2},impossible:{time:45,hp:240,damage:19,interval:5.5,heal:30,speed:2.8}};
+let player={x:155,y:325,hp:100,maxHp:100,energy:0,speed:3.5,invuln:0};let boss={x:760,y:320,hp:150,maxHp:150,flash:0,attackAnim:0,healAnim:0,windup:0,dir:1};let timeLeft=90;
+function setStatus(t){$('status').textContent=t}
+function resizeCanvas(){/* CSS scales the canvas responsively while preserving its 16:9 game coordinates. */}
+function arenaBg(){
+ let g=ctx.createLinearGradient(0,0,0,540);g.addColorStop(0,'#142c4b');g.addColorStop(1,'#071522');ctx.fillStyle=g;ctx.fillRect(0,0,960,540);
+ for(let i=0;i<60;i++){ctx.globalAlpha=.25+(i%4)*.12;ctx.fillStyle=i%3?'#8baec4':'#ffd166';ctx.fillRect((i*137)%960,(i*71)%250,2,2)}ctx.globalAlpha=1;
+ ctx.fillStyle='#0b1e2c';ctx.fillRect(55,310,190,95);ctx.fillRect(82,270,30,135);ctx.fillRect(190,270,30,135);ctx.beginPath();ctx.arc(150,310,42,Math.PI,0);ctx.fill();
+ ctx.fillStyle='#17384a';ctx.fillRect(0,400,960,140);ctx.strokeStyle='#31536a';ctx.lineWidth=2;for(let i=0;i<6;i++){ctx.beginPath();ctx.ellipse(480,470,100+i*70,20+i*13,0,0,Math.PI*2);ctx.stroke()}
+ ctx.fillStyle='#ffd166';ctx.beginPath();ctx.arc(825,75,31,0,Math.PI*2);ctx.fill();ctx.fillStyle='#142c4b';ctx.beginPath();ctx.arc(840,64,28,0,Math.PI*2);ctx.fill();
+}
+function drawHero(){
+ ctx.save();ctx.translate(player.x,player.y);if(player.invuln>0&&Math.floor(performance.now()/80)%2===0)ctx.globalAlpha=.35;
+ ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,24,24,8,0,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle=heroColor;ctx.beginPath();ctx.arc(0,-12,18,0,Math.PI*2);ctx.fill();ctx.fillStyle='#f4d3b0';ctx.beginPath();ctx.arc(0,-14,11,0,Math.PI*2);ctx.fill();ctx.fillStyle='#19334a';ctx.fillRect(-13,3,26,25);ctx.fillStyle=heroColor;ctx.beginPath();ctx.moveTo(-17,3);ctx.lineTo(0,13);ctx.lineTo(17,3);ctx.lineTo(12,23);ctx.lineTo(-12,23);ctx.fill();
+ ctx.font='27px sans-serif';ctx.textAlign='center';ctx.fillText(classes[heroClass].icon,0,-29);ctx.fillStyle='#fff';ctx.font='bold 13px system-ui';ctx.fillText(($('heroName').value||'Pengembara').slice(0,14),0,48);
+ if(attackFlash>0){ctx.strokeStyle=heroColor;ctx.lineWidth=6;ctx.beginPath();ctx.arc(0,0,43,0,Math.PI*2);ctx.stroke()}ctx.restore();
+}
+function drawBoss(){
+ ctx.save();ctx.translate(boss.x,boss.y);
+ if(shake>0){ctx.translate(Math.sin(performance.now()/18)*shake,0)}
+ ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,26,42,10,0,0,Math.PI*2);ctx.fill();
+ // body bob and flash during damage
+ let bob=Math.sin(performance.now()/170)*4;ctx.translate(0,bob);
+ ctx.fillStyle=boss.flash?'#fff':'#7548a0';ctx.beginPath();ctx.moveTo(-32,-35);ctx.lineTo(-45,10);ctx.lineTo(-25,30);ctx.lineTo(0,38);ctx.lineTo(25,30);ctx.lineTo(45,10);ctx.lineTo(32,-35);ctx.closePath();ctx.fill();
+ ctx.fillStyle=boss.flash?'#fff':'#b18be2';ctx.beginPath();ctx.arc(0,-28,29,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#ffd166';ctx.fillRect(-17,-34,10,6);ctx.fillRect(7,-34,10,6);
+ ctx.fillStyle='#5e337e';ctx.beginPath();ctx.moveTo(-22,-45);ctx.lineTo(-31,-68);ctx.lineTo(-7,-53);ctx.lineTo(0,-72);ctx.lineTo(8,-52);ctx.lineTo(31,-67);ctx.lineTo(22,-43);ctx.fill();
+ if(boss.windup>0){ctx.strokeStyle='#ff667a';ctx.lineWidth=5;ctx.setLineDash([8,6]);ctx.beginPath();ctx.arc(0,0,62+Math.sin(performance.now()/80)*8,0,Math.PI*2);ctx.stroke();ctx.setLineDash([])}
+ if(boss.healAnim>0){ctx.fillStyle='#5de0b2';ctx.font='bold 32px system-ui';ctx.textAlign='center';ctx.fillText('+ HP',0,-82);for(let i=0;i<5;i++){ctx.fillText('+',Math.sin(performance.now()/130+i)*35,-60-i*13)}}
+ if(boss.attackAnim>0){ctx.strokeStyle='#ff667a';ctx.lineWidth=13;ctx.globalAlpha=.8;ctx.beginPath();ctx.moveTo(-50,0);ctx.lineTo(-110,12);ctx.lineTo(-80,45);ctx.stroke();ctx.globalAlpha=1}
+ ctx.fillStyle='#ffd166';ctx.font='bold 14px system-ui';ctx.textAlign='center';ctx.fillText('BOS RAMADAN',0,58);ctx.restore();
+}
+function draw(){
+ if(!ctx)return;arenaBg();
+ // attack wave telegraph / travelling wave
+ if(actionDue&&running){ctx.strokeStyle=actionDue.type==='heal'?'#5de0b2':'#ff667a';ctx.lineWidth=4;ctx.setLineDash([10,8]);ctx.beginPath();ctx.arc(boss.x,boss.y,actionDue.type==='heal'?65:95,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#fff';ctx.font='bold 16px system-ui';ctx.textAlign='center';ctx.fillText(actionDue.type==='heal'?'MENGUMPUL TENAGA':'SERANGAN KHAS!',boss.x,boss.y-82)}
+ projectiles.forEach(p=>{ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.globalAlpha=.3;ctx.beginPath();ctx.arc(p.x-p.vx*5,p.y-p.vy*5,p.r*1.8,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1});
+ drawHero();drawBoss();
+ if(!running&&!ended){ctx.fillStyle='#071725c9';ctx.fillRect(225,190,510,130);ctx.fillStyle='#fff';ctx.textAlign='center';ctx.font='bold 28px system-ui';ctx.fillText('ARENA PENJAGA JIWA',480,238);ctx.font='16px system-ui';ctx.fillText('Tekan Mula Pertarungan untuk bermula',480,274)}
+ if(ended){ctx.fillStyle='#071725e8';ctx.fillRect(170,160,620,190);ctx.textAlign='center';ctx.fillStyle='#ffd166';ctx.font='bold 34px system-ui';ctx.fillText(boss.hp<=0?'🏆 BOS DITAWAN!':player.hp<=0?'💫 CUBA LAGI':'⏳ MASA TAMAT',480,220);ctx.fillStyle='#fff';ctx.font='20px system-ui';ctx.fillText(boss.hp<=0?'Tahniah, Penjaga Jiwa!':'Bina strategi dan cuba sekali lagi.',480,263);ctx.font='16px system-ui';ctx.fillText('XP semasa: '+xp,480,300)}
+}
+function startFight(){let d=diff[$('difficulty').value];player={x:155,y:325,hp:100,maxHp:100,energy:0,speed:classes[heroClass].speed,invuln:0};boss={x:760,y:320,hp:d.hp,maxHp:d.hp,flash:0,attackAnim:0,healAnim:0,windup:0,dir:1};timeLeft=d.time;lastSecond=performance.now();lastAction=performance.now();actionDue=null;projectiles=[];running=true;ended=false;quizOpen=false;$('quizVeil').classList.remove('show');$('startFight').textContent='↻ Mula Semula';setStatus('Pertarungan bermula! Bos kini bergerak mengejar anda.');updateProfile()}
+function endFight(win){running=false;ended=true;quizOpen=false;actionDue=null;$('quizVeil').classList.remove('show');if(win){addReward(50,15);missions.add('boss');setStatus('Tahniah! Bos ditewaskan. Bonus kemenangan +50 XP dan 15 syiling!')}else setStatus(timeLeft<=0?'Masa tamat! Cuba tahap lebih mudah atau serang lebih pantas.':'Nyawa habis! Cuba bergerak untuk mengelak serangan.');updateProfile()}
+function attack(special=false){if(!running||quizOpen||ended)return;let d=classes[heroClass],range=special?d.range+55:d.range;if(Math.hypot(player.x-boss.x,player.y-boss.y)>range){setStatus('Terlalu jauh! Bergerak lebih dekat atau pilih Pemanah/Ahli Sihir.');return}if(special&&player.energy<100){setStatus('Tenaga belum penuh. Serang bos untuk mengumpul tenaga.');return}let damage=special?d.damage*2:d.damage;if(special)player.energy=0;boss.hp=Math.max(0,boss.hp-damage);boss.flash=10;attackFlash=10;shake=5;addReward(special?12:5,special?2:1);setStatus(`${special?d.special:'Serangan'} berjaya! Bos kehilangan ${damage} HP.`);if(boss.hp<=0){endFight(true)}updateProfile()}
+function triggerAction(){let type=Math.random()<.65?'special':'heal';actionDue={type,deadline:performance.now()+10000};quizOpen=true;$('quizVeil').classList.add('show');$('quizType').textContent=type==='heal'?'AMARAN: BOS MAHU SEMBUH':'AMARAN: SERANGAN KHAS BOS';$('quizTitle').textContent=type==='heal'?'💚 Hentikan pemulihan bos!':'🛡️ Hentikan serangan khas!';let q=questions[Math.floor(Math.random()*questions.length)];$('quizPrompt').textContent=q.q;$('quizFeedback').textContent='Jawab dalam 10 saat untuk menghentikan tindakan bos.';$('quizFeedback').style.color='var(--text)';let opts=$('quizOptions');opts.innerHTML='';q.a.map((a,i)=>({a,i})).sort(()=>Math.random()-.5).forEach(item=>{let b=document.createElement('button');b.textContent=item.a;b.onclick=()=>{if(!quizOpen)return;[...opts.children].forEach(x=>x.disabled=true);if(item.i===q.c){$('quizFeedback').textContent='✅ Betul! '+q.why+' Tindakan bos dibatalkan!';$('quizFeedback').style.color='#5de0b2';addReward(15,3);actionDue=null;setStatus('Jawapan tepat! Kuasa bos berjaya dihentikan. +15 XP');updateProfile();setTimeout(closeQuiz,1000)}else{$('quizFeedback').textContent='❌ Belum tepat. '+q.why;$('quizFeedback').style.color='#ff9eaa';setTimeout(()=>{if(quizOpen)resolveAction(false)},1200)}};opts.appendChild(b)})}
+function closeQuiz(){quizOpen=false;$('quizVeil').classList.remove('show');actionDue=null}
+function resolveAction(stopped){if(!actionDue)return;let type=actionDue.type;actionDue=null;quizOpen=false;$('quizVeil').classList.remove('show');if(!stopped){if(type==='heal'){let n=diff[$('difficulty').value].heal;boss.hp=Math.min(boss.maxHp,boss.hp+n);boss.healAnim=70;setStatus('Bos memulihkan '+n+' HP!')}else{boss.attackAnim=22;let d=diff[$('difficulty').value].damage;let hit=Math.hypot(player.x-boss.x,player.y-boss.y)<175;if(hit&&player.invuln<=0){player.hp=Math.max(0,player.hp-d);player.invuln=55;shake=8;setStatus('Serangan khas bos mengenai anda! -'+d+' nyawa.')}else setStatus('Bos melepaskan gelombang serangan, tetapi anda berjaya mengelak!');if(player.hp<=0){endFight(false);return}}}updateProfile()}
+function loop(ts){let dt=Math.min((ts-lastFrame)/16.67||1,2);lastFrame=ts;if(running&&!quizOpen){let dx=0,dy=0;if(keys.ArrowLeft||keys.a||moveBtns.left)dx--;if(keys.ArrowRight||keys.d||moveBtns.right)dx++;if(keys.ArrowUp||keys.w||moveBtns.up)dy--;if(keys.ArrowDown||keys.s||moveBtns.down)dy++;if(dx||dy){let len=Math.hypot(dx,dy)||1;player.x=Math.max(30,Math.min(930,player.x+dx/len*player.speed*dt));player.y=Math.max(220,Math.min(455,player.y+dy/len*player.speed*dt))}
+ // Boss AI chases player with sinusoidal strafing and periodic lunges
+ let d=diff[$('difficulty').value],vx=player.x-boss.x,vy=player.y-boss.y,dist=Math.hypot(vx,vy)||1;
+ if(!actionDue){if(dist>105){boss.x+=vx/dist*d.speed*dt;boss.y+=vy/dist*d.speed*.45*dt+Math.sin(ts/260)*.7}else{boss.x+=Math.sin(ts/160)*1.4;boss.y+=Math.cos(ts/210)*1.0}}
+ boss.x=Math.max(420,Math.min(915,boss.x));boss.y=Math.max(220,Math.min(455,boss.y));
+ if(player.invuln>0)player.invuln-=dt;if(boss.flash>0)boss.flash-=dt;if(boss.attackAnim>0)boss.attackAnim-=dt;if(boss.healAnim>0)boss.healAnim-=dt;if(boss.windup>0)boss.windup-=dt;if(attackFlash>0)attackFlash-=dt;if(shake>0)shake-=dt;
+ projectiles=projectiles.filter(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;return p.x>-20&&p.x<980&&p.y>180&&p.y<540});
+ if(ts-lastSecond>=1000){timeLeft--;lastSecond=ts;if(timeLeft<=0)endFight(false)}
+ if(ts-lastAction>d.interval*1000&&!actionDue){boss.windup=40;triggerAction();lastAction=ts}
+ if(actionDue&&ts>actionDue.deadline)resolveAction(false);
+ }
+ updateProfile();draw();requestAnimationFrame(loop)}
+$('startFight').onclick=startFight;$('attackBtn').onclick=()=>attack(false);$('specialBtn').onclick=()=>attack(true);
+$('resetFight').onclick=()=>{running=false;ended=false;quizOpen=false;actionDue=null;$('quizVeil').classList.remove('show');player={x:155,y:325,hp:100,maxHp:100,energy:0,speed:3.5,invuln:0};boss={x:760,y:320,hp:150,maxHp:150,flash:0,attackAnim:0,healAnim:0,windup:0};timeLeft=90;setStatus('Pertarungan ditetapkan semula. Pilih tahap dan mula semula.');updateProfile();draw()};
+document.addEventListener('keydown',e=>{let k=e.key.length===1?e.key.toLowerCase():e.key;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();keys[k]=true;if(e.repeat)return;if(e.code==='Space')attack(false);if(k==='e')attack(true)});
+document.addEventListener('keyup',e=>{let k=e.key.length===1?e.key.toLowerCase():e.key;keys[k]=false});
+document.querySelectorAll('[data-move]').forEach(b=>{let dir=b.dataset.move;let on=e=>{e.preventDefault();moveBtns[dir]=true},off=e=>{e.preventDefault();moveBtns[dir]=false};b.addEventListener('pointerdown',on);['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,off))});
+$('difficulty').onchange=()=>{if(!running){let d=diff[$('difficulty').value];timeLeft=d.time;boss.maxHp=boss.hp=d.hp;updateProfile();draw()}};
+function setStatus(t){$('status').textContent=t}
+function updateProfile(){// keep dashboard + arena displays in sync
+ $('hpText').textContent=player.hp+' / '+player.maxHp;$('hpBar').style.width=(100*player.hp/player.maxHp)+'%';$('xpText').textContent=xp+' XP';$('xpBar').style.width=(xp%100)+'%';$('coinText').textContent=coins;$('levelText').textContent='Level '+level;$('questBar').style.width=(missions.size/3*100)+'%';$('questText').textContent=missions.size+' daripada 3 misi diterokai';$('gateText').textContent=missions.has('learn')&&missions.has('moral')?'Gerbang terbuka! Bersedia untuk bos.':'Selesaikan Hutan Ilmu dan Kampung Akhlak untuk membuka gerbang.';$('homeAvatar').textContent=classes[heroClass].icon;$('characterPreview').textContent=classes[heroClass].icon;$('fightHpText').textContent=player.hp+' / '+player.maxHp;$('fightHpBar').style.width=(100*player.hp/player.maxHp)+'%';$('bossHpText').textContent=Math.max(0,boss.hp)+' / '+boss.maxHp;$('bossHpBar').style.width=(100*boss.hp/boss.maxHp)+'%';$('timeText').textContent=fmt(timeLeft);$('energyText').textContent=player.energy+'%';$('energyBar').style.width=player.energy+'%';$('specialBtn').textContent='✨ '+classes[heroClass].special+' ('+player.energy+'%)';$('specialBtn').disabled=!running||player.energy<100||quizOpen}
+renderShop();updateProfile();draw();requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
